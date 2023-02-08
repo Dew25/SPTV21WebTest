@@ -6,7 +6,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,16 +16,24 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author user
  */
-@WebServlet(name = "MyServlet", urlPatterns = {"/page1","/page3"})
+@WebServlet(name = "MyServlet", urlPatterns = {"/page1","/page3", "/page4"})
 public class MyServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        if("/page1".equals(request.getServletPath())){
-            request.getRequestDispatcher("/WEB-INF/page1.html").forward(request, response);
-        }else if("/page3".equals(request.getServletPath())){
-            request.getRequestDispatcher("/WEB-INF/page3.html").forward(request, response);
+        String path = request.getServletPath();
+        switch (path) {
+            case "/page1":
+                request.getRequestDispatcher("/WEB-INF/page1.html").forward(request, response);
+                break;
+            case "/page3":
+                request.getRequestDispatcher("/WEB-INF/page3.html").forward(request, response);
+                break;
+            case "/page4":
+                request.getRequestDispatcher("/WEB-INF/page4.html").forward(request, response);
+                break;
+            
         }
         
     }
