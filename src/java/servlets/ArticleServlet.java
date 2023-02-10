@@ -29,6 +29,7 @@ import sesion.AuthorFacade;
     "/newAuthor",
     "/createAuthor",
     "/listArticles",
+    "/article",
 
 })
 public class ArticleServlet extends HttpServlet {
@@ -75,6 +76,12 @@ public class ArticleServlet extends HttpServlet {
                 author.setLastname(lastname);
                 authorFacade.create(author);
                 request.getRequestDispatcher("/WEB-INF/newAuthor.jsp").forward(request, response);
+                break;
+            case "/article":
+                String articleId = request.getParameter("articleId");
+                article = articleFacade.find(Long.parseLong(articleId));
+                request.setAttribute("article", article);
+                request.getRequestDispatcher("/WEB-INF/article.jsp").forward(request, response);
                 break;
             
         }
