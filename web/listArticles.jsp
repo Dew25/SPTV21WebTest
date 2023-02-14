@@ -16,7 +16,7 @@
         <h1>Статьи:</h1>
         <ol>
             <c:forEach var="article" items="${listArticles}">
-                <li><a href="article?articleId=${article.id}">${article.caption}</a></li>
+                <li><a href="article?articleId=${article.id}">${article.title}</a></li>
             </c:forEach>
         </ol>
         <br>
